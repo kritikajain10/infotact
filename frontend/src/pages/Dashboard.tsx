@@ -1,8 +1,10 @@
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import StatusCard from "../components/StatusCard";
+import useTelemetry from "../hooks/useTelemetry";
 
 function Dashboard() {
+  const telemetry = useTelemetry();
     return (
         <div>
           <Sidebar />
@@ -18,10 +20,10 @@ function Dashboard() {
                 marginBottom: "30px",
               }}
             >
-              <StatusCard title="Vehicles" value={120} />
-              <StatusCard title="Active" value={108} />
-              <StatusCard title="Alerts" value={5} />
-              <StatusCard title="Offline" value={12} />
+              <StatusCard title="Vehicles" value={telemetry.vehicles} />
+              <StatusCard title="Active" value={telemetry.active} />
+             <StatusCard title="Alerts" value={telemetry.alerts} />
+              <StatusCard title="Offline" value={telemetry.offline} />
             </div>
       
             <h1>FleetDash Dashboard</h1>
