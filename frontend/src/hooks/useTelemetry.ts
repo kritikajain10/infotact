@@ -10,14 +10,23 @@ export default function useTelemetry() {
   });
 
   useEffect(() => {
+    socket.on("connect", () => {
+      console.log("Connected to Socket.IO server");
+    });
+    
+    socket.on("disconnect", () => {
+      console.log("Disconnected from Socket.IO server");
+    });
     socket.on("telemetry", (data) => {
       console.log("Telemetry:", data);
       setTelemetry(data);
     });
 
     return () => {
-      socket.off("telemetry");
-    };
+        socket.off("telemetry");
+        socket.off("connect");
+        socket.off("disconnect");
+      };
   }, []);
 
   return telemetry;
