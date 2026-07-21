@@ -6,6 +6,7 @@ const connectDB = require("./config/db");
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+const { isInsideGeofence }= require("./utils/geofence");
 
 const app = express();
 const server = http.createServer(app);
@@ -51,6 +52,9 @@ app.post("/telemetry", (req, res) => {
   });
 const PORT = process.env.PORT || 5000;
 connectDB();
+console.log("Inside Geofence:", isInsideGeofence(77.25, 28.65));
+console.log("Outside Geofence:", isInsideGeofence(78.00, 29.00));
+
 io.on("connection", (socket) => {
   console.log("Client Connected");
 
