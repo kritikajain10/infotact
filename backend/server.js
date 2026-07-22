@@ -31,6 +31,7 @@ app.post("/telemetry", (req, res) => {
     worker.postMessage(req.body);
   
     worker.on("message", (result) => {
+      io.emit("telemetry", result);
       res.json({
         success: true,
         data: result,
