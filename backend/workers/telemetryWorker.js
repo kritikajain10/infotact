@@ -10,6 +10,7 @@ parentPort.on("message", (data) => {
   const processed = {
     ...data,
     insideGeofence,
+    alert: insideGeofence ? "Vehicle inside geofence" : "Vehicle outside geofence",
     processedAt: new Date(),
   };
 
