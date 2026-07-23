@@ -25,6 +25,27 @@ function Dashboard() {
              <StatusCard title="Alerts" value={telemetry.alerts} />
               <StatusCard title="Offline" value={telemetry.offline} />
             </div>
+            <div
+       style={{
+    marginTop: "20px",
+    padding: "20px",
+    background: "#1e293b",
+    color: "white",
+    borderRadius: "12px",
+    width: "350px",
+  }}
+>
+  <h3>Geofence Status</h3>
+  <p>
+    {telemetry.insideGeofence
+      ? "🟢 Inside Geofence"
+      : "🔴 Outside Geofence"}
+  </p>
+
+  <h3>Alert</h3>
+  <p>{telemetry.alert}</p>
+</div>
+          
       
             <h1>FleetDash Dashboard</h1>
             <p>Welcome to FleetDash 🚚</p>

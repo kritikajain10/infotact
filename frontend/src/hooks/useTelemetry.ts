@@ -7,6 +7,8 @@ export default function useTelemetry() {
     active: 0,
     alerts: 0,
     offline: 0,
+    insideGeofence: false,
+    alert: " ",
   });
 
   useEffect(() => {
