@@ -1,3 +1,4 @@
+import CanvasMap from "../components/CanvasMap";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import StatusCard from "../components/StatusCard";
@@ -41,7 +42,7 @@ function Dashboard() {
       ? "🟢 Inside Geofence"
       : "🔴 Outside Geofence"}
   </p>
-
+  <CanvasMap/>
   <h3>Alert</h3>
   <p>{telemetry.alert}</p>
 </div>
