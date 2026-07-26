@@ -13,7 +13,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "http://localhost:5175",
     methods: ["GET", "POST"],
   },
 });
@@ -64,6 +64,9 @@ io.on("connection", (socket) => {
     active: 108,
     alerts: 5,
     offline: 12,
+    insideGeofence: true,
+    alert: "Vehicle Inside Geofence",
+
   });
 
   socket.on("disconnect", () => {

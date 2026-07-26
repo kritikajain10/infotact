@@ -1,7 +1,9 @@
+import useTelemetry from "../hooks/useTelemetry";
 import { useEffect, useRef } from "react";
 
 export default function CanvasMap() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const telemetry = useTelemetry();
 
   
   useEffect(() => {
@@ -24,6 +26,9 @@ export default function CanvasMap() {
       ctx.fillStyle = "white";
       ctx.font = "20px Arial";
       ctx.fillText("FleetDash Canvas", 20, 35);
+      ctx.font = "16px Arial";
+      ctx.fillStyle = "white";
+      ctx.fillText(telemetry.alert,20, 60);
     
       // Vehicle
       ctx.fillStyle = "#22c55e";
@@ -31,11 +36,8 @@ export default function CanvasMap() {
       ctx.arc(x, 150, 10, 0, Math.PI * 2);
       ctx.fill();
     
-      x += 2;
-    
-      if (x > canvas.width) {
-        x = 0;
-      }
+     x = telemetry.insideGeofence ?
+     250 : 100;
     
       requestAnimationFrame(draw);
     }
