@@ -1,3 +1,4 @@
+import VehicleCard from "../components/VehicleCard";
 import CanvasMap from "../components/CanvasMap";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
@@ -42,11 +43,27 @@ function Dashboard() {
       ? "🟢 Inside Geofence"
       : "🔴 Outside Geofence"}
   </p>
+
   <CanvasMap/>
   <h3>Alert</h3>
   <p>{telemetry.alert}</p>
 </div>
-          
+          <div
+  style={{
+    marginTop: "20px",
+    background: "#1e293b",
+    padding: "20px",
+    borderRadius: "12px",
+    color: "white",
+    width: "350px",
+  }}
+>
+  <h3>Vehicles</h3>
+
+  <VehicleCard name="Truck 101" status="Active" />
+  <VehicleCard name="Truck 102" status="Offline" />
+  <VehicleCard name="Truck 103" status="Maintenance" />
+</div>
       
             <h1>FleetDash Dashboard</h1>
             <p>Welcome to FleetDash 🚚</p>
