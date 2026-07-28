@@ -7,6 +7,14 @@ import useTelemetry from "../hooks/useTelemetry";
 
 function Dashboard() {
   const telemetry = useTelemetry();
+  const vehicles = [
+    { id: 1 ,name: "Truck 101", status: "Offline"},
+    { id: 2 ,name: "Truck 102", status: "Active"},
+    { id: 3 ,name: "Truck 103", status: "Maintenance"},
+    
+    
+
+  ];
     return (
         <div>
           <Sidebar />
@@ -60,13 +68,15 @@ function Dashboard() {
 >
   <h3>Vehicles</h3>
 
-  <VehicleCard name="Truck 101" status="Active" />
-  <VehicleCard name="Truck 102" status="Offline" />
-  <VehicleCard name="Truck 103" status="Maintenance" />
+  {vehicles.map((vehicle)=> (
+    <VehicleCard 
+    key={vehicle.id}
+    name={vehicle.name}
+    status={vehicle.status}
+    />
+
+  ))}
 </div>
-      
-            <h1>FleetDash Dashboard</h1>
-            <p>Welcome to FleetDash 🚚</p>
           </div>
         </div>
       );
