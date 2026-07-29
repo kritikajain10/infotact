@@ -4,7 +4,12 @@ type Props = {
   };
   
   function VehicleCard({ name, status }: Props) {
+    const statusColor = status === "Active"
+      ? "#22c55e"
+      : status === "Offline" ? "#ef4444" : "f59eob";
+      
     return (
+      
       <div
         style={{
           background: "#1e293b",
@@ -15,7 +20,15 @@ type Props = {
         }}
       >
         <h3>{name}</h3>
-        <p>Status: {status}</p>
+        <p>
+          status: {" "}
+          <span 
+          style={{
+            color: statusColor,
+            fontWeight: "bold",
+          }}>{status}</span>
+
+        </p>
       </div>
     );
   }
