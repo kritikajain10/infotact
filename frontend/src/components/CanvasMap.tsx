@@ -2,12 +2,12 @@ import useTelemetry from "../hooks/useTelemetry";
 import { useEffect, useRef } from "react";
 
 export default function CanvasMap() {
+  let x = 100;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const telemetry = useTelemetry();
 
   
   useEffect(() => {
-    let x = 100;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -36,14 +36,20 @@ export default function CanvasMap() {
       ctx.arc(x, 150, 10, 0, Math.PI * 2);
       ctx.fill();
     
-     x = telemetry.insideGeofence ?
-     250 : 100;
-    
+      if (telemetry.insideGeofence) {
+        if (x < 250) {
+          x += 2;
+        }
+      } else {
+        if (x > 100) {
+          x -= 2;
+        }
+      }
       requestAnimationFrame(draw);
     }
     
     draw();
-  },[]);
+  }, [telemetry]);
   return (
     <canvas
       ref={canvasRef}

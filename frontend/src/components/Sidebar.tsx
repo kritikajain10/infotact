@@ -4,7 +4,7 @@ function Sidebar() {
         style={{
           width: "200px",
           height: "100vh",
-          background: "#1f2937",
+          background: "brown",
           color: "white",
           position: "fixed",
           left: 0,

@@ -39,7 +39,7 @@ function Dashboard() {
        style={{
     marginTop: "20px",
     padding: "20px",
-    background: "#1e293b",
+    background: "blue",
     color: "white",
     borderRadius: "12px",
     width: "350px",

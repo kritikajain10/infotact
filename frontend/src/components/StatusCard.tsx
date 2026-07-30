@@ -7,8 +7,8 @@ type Props = {
     return (
       <div
       style={{
-        background: "#1e293b",
-        color: "white",
+        background: "#fff",
+        color: "black",
         padding: "20px",
         borderRadius: "15px",
         width: "180px",
@@ -23,6 +23,7 @@ type Props = {
     fontSize: "18px",
     fontWeight: "600",
     marginBottom: "10px",
+    color:"black"
   }}
 >
   {title}
@@ -33,6 +34,7 @@ type Props = {
     fontSize: "42px",
     fontWeight: "bold",
     margin: 0,
+    color: "black"
   }}
 >
   {value}
