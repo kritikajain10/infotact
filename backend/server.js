@@ -13,7 +13,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5174",
+    origin: "http://localhost:5000",
     methods: ["GET", "POST"],
   },
 });
@@ -52,7 +52,9 @@ app.post("/telemetry", (req, res) => {
     });
   });
 const PORT = process.env.PORT || 5000;
-connectDB();
+if (process.env.NODE_ENV !== "test") {
+  connectDB();
+}
 console.log("Inside Geofence:", isInsideGeofence(77.25, 28.65));
 console.log("Outside Geofence:", isInsideGeofence(78.00, 29.00));
 
