@@ -2,7 +2,12 @@ import useTelemetry from "../hooks/useTelemetry";
 import { useEffect, useRef } from "react";
 
 export default function CanvasMap() {
-  let x = 100;
+  const vehicles = Array.from({ length: 300 }, () => ({
+    x: Math.random() * 700,
+    y: Math.random() * 300,
+    dx: Math.random() * 2 + 1,
+    color: Math.random() > 0.5 ? "#22c55e" : "#3b82f6"
+  }));
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const telemetry = useTelemetry();
 
@@ -31,20 +36,28 @@ export default function CanvasMap() {
       ctx.fillText(telemetry.alert,20, 60);
     
       // Vehicle
-      ctx.fillStyle = "#22c55e";
-      ctx.beginPath();
-      ctx.arc(x, 150, 10, 0, Math.PI * 2);
-      ctx.fill();
-    
-      if (telemetry.insideGeofence) {
-        if (x < 250) {
-          x += 2;
+      vehicles.forEach(vehicle => {
+
+        if (telemetry.insideGeofence) {
+          vehicle.x += vehicle.dx;
+      
+          if (vehicle.x > canvas.width) {
+            vehicle.x = 0;
+          }
+      
+        } else {
+          vehicle.x -= vehicle.dx;
+      
+          if (vehicle.x < 0) {
+            vehicle.x = canvas.width;
+          }
         }
-      } else {
-        if (x > 100) {
-          x -= 2;
-        }
-      }
+      
+        ctx.beginPath();
+        ctx.fillStyle = vehicle.color;
+        ctx.arc(vehicle.x, vehicle.y, 5, 0, Math.PI * 2);
+        ctx.fill();
+      });
       requestAnimationFrame(draw);
     }
     

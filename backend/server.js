@@ -13,7 +13,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5175",
+    origin: "http://localhost:5174",
     methods: ["GET", "POST"],
   },
 });
@@ -74,6 +74,10 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(PORT, () => {
+if (process.env.NODE_ENV !== "test") {
+  server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-});
+  });
+}
+
+module.exports = app;

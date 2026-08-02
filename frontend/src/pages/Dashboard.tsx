@@ -1,9 +1,10 @@
 import VehicleCard from "../components/VehicleCard";
-import CanvasMap from "../components/CanvasMap";
+import LiveMap from "../components/LiveMap";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import StatusCard from "../components/StatusCard";
 import useTelemetry from "../hooks/useTelemetry";
+
 
 function Dashboard() {
   const telemetry = useTelemetry();
@@ -15,6 +16,19 @@ function Dashboard() {
     
 
   ];
+  const totalVehicles = vehicles.length;
+
+const activeVehicles = vehicles.filter(
+  (v) => v.status === "Active"
+).length;
+
+const offlineVehicles = vehicles.filter(
+  (v) => v.status === "Offline"
+).length;
+
+const alertVehicles = vehicles.filter(
+  (v) => v.status === "Maintenance"
+).length;
     return (
         <div>
           <Sidebar />
@@ -52,7 +66,7 @@ function Dashboard() {
       : "🔴 Outside Geofence"}
   </p>
 
-  <CanvasMap/>
+  <LiveMap/>
   <h3>Alert</h3>
   <p>{telemetry.alert}</p>
 </div>
