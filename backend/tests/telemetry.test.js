@@ -12,5 +12,5 @@ describe("FleetDash API", () => {
 const mongoose = require("mongoose");
 
 afterAll(async () => {
-  await mongoose.connection.close();
-});
+  await mongoose.disconnect();
+}, 10000);
