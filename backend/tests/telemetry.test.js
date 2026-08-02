@@ -9,3 +9,8 @@ describe("FleetDash API", () => {
     expect(res.text).toContain("FleetDash API Running");
   });
 });
+const mongoose = require("mongoose");
+
+afterAll(async () => {
+  await mongoose.connection.close();
+});
